@@ -7,25 +7,40 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Post;
+use App\Models\Post;
 
+/**
+ * Class PostController
+ * @package App\Http\Controllers\Admin
+ */
 class PostController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
+
         // Va chercher la vue resources/views/admin/posts/index.blade.php
         return view('admin.posts.index', [
             'posts' => $posts
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         // Va chercher la vue resources/views/admin/posts/create.blade.php
         return view('admin.posts.create');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $post = new Post; // Je crée un nouvel objet Post
@@ -36,11 +51,18 @@ class PostController extends Controller
         return redirect()->route('articles');
     }
 
+    /**
+     * @param $id
+     */
     public function show($id)
     {
         //
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $post = Post::find($id);
@@ -50,6 +72,11 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
@@ -61,6 +88,10 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         $post = Post::find($id);

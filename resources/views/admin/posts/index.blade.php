@@ -13,6 +13,8 @@
                 Créer un nouvel article
             </a>
             <hr>
+            {{ $posts->links() }}
+            <hr>
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -22,7 +24,7 @@
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
-                @foreach($posts as $post)
+                @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->created_at->diffForHumans() }}</td>
