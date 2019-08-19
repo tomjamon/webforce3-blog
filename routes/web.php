@@ -13,9 +13,7 @@ Route::prefix('backoffice')->middleware('auth')->namespace('Admin')->group(funct
 });
 
 // localhost/blog/public/a-propos va me renvoyer sur public function bonjour() dans le HomeController
-Route::get('/', function() {
-    return view('a-propos');
-});
+Route::get('/', 'PostController@articles');
 
 // Page d'accueil
 Route::get('/home', 'HomeController@index')->name('home');

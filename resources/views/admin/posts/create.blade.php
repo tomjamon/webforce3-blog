@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"> Création d'un article</div>
                 <div class="card-body">
@@ -32,7 +32,9 @@
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="content">Contenu</label><br>
-                            <textarea value="{{ old('content') }}"  placeholder="Contenu" name="content" id="content" style="width:100%" rows="5"></textarea>
+                            <textarea placeholder="Contenu" name="content" id="content" style="width:100%" rows="5">
+                                {{ old('content') }}
+                            </textarea>
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="draft">Brouillon</label>

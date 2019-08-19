@@ -46,14 +46,24 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $validated = $request->validated();
-        dump($validated);
-        die;
+        $postData = $request->validated();
 
-        $post = new Post; // Je crée un nouvel objet Post
-        $post->title = $request->input('title'); // Je lui assigne un titre
-        $post->content = $request->input('content'); // je lui assigne un contenu
-        $post->save(); // Je sauvegarde (méthode magique de Laravel)
+        $post = new Post;
+        $post->title = $postData['title'];
+        $post->content = $postData['content'];
+        $post->category_id = $postData['category_id'];
+        $post->theme = $postData['theme'];
+        if (isset($postData['draft'])) {
+            $post->draft = true;
+        } else {
+            $post->draft = false;
+        }
+        if (isset($postData['active'])) {
+            $post->active = true;
+        } else {
+            $post->active = false;
+        }
+        $post->save();
 
         return redirect()->route('articles');
     }
@@ -73,8 +83,10 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $categories = Category::all();
 
         return view('admin.posts.edit', [
+            'categories' => $categories,
             'post' => $post
         ]);
     }
@@ -84,11 +96,24 @@ class PostController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
+        $postData = $request->validated();
         $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
+        $post->title = $postData['title'];
+        $post->content = $postData['content'];
+        $post->category_id = $postData['category_id'];
+        $post->theme = $postData['theme'];
+        if (isset($postData['draft'])) {
+            $post->draft = true;
+        } else {
+            $post->draft = false;
+        }
+        if (isset($postData['active'])) {
+            $post->active = true;
+        } else {
+            $post->active = false;
+        }
         $post->save();
         $request->session()->flash('status', 'Article bien modifié');
 

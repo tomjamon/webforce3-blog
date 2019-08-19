@@ -19,6 +19,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>TITRE</th>
+                        <th>Catégorie</th>
                         <th>Date de création</th>
                         <th>Date de modification</th>
                         <th>ACTIONS</th>
@@ -27,6 +28,11 @@
                 @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->title }}</td>
+                        <td>
+                            @if($post->category)
+                                {{ $post->category->title }}
+                            @endif
+                        </td>
                         <td>{{ $post->created_at->diffForHumans() }}</td>
                         <td>{{ $post->updated_at->diffForHumans() }}</td>
                         <td>

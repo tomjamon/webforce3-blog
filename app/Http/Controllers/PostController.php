@@ -10,7 +10,7 @@ class PostController extends Controller
     // Renvoie la liste des articles
     public function articles()
     {
-        $posts = Post::all(); // Récupère tous les articles
+        $posts = Post::orderBy('created_at','DESC')->get(); // Récupère tous les articles
 
         return view('articles', [
             'posts' => $posts,
