@@ -1,7 +1,5 @@
 <?php
 
-
-
 // Groupement de toutes les routes accessibles uniquement quand on est connecté
 Route::prefix('backoffice')->middleware('auth')->namespace('Admin')->group(function() {
     // Appels directement dans App\Http\Controllers\Admin grace a namespace('Admin)
@@ -13,27 +11,6 @@ Route::prefix('backoffice')->middleware('auth')->namespace('Admin')->group(funct
     Route::put('posts/{id}/update', 'PostController@update')->name('posts.update'); // Enregistrer la modification
     Route::get('posts/{id}/destroy', 'PostController@destroy')->name('posts.destroy'); // Supprime un article
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // localhost/blog/public/a-propos va me renvoyer sur public function bonjour() dans le HomeController
 Route::get('/', function() {
