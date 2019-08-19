@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 // Ici, je met ce que j'ai besoin dans mon controller;
 // Request car je fais des requêtes, Post car j'utilise la class Post
+
+use App\Http\Requests\PostRequest;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 
 /**
  * Class PostController
@@ -33,16 +36,20 @@ class PostController extends Controller
      */
     public function create()
     {
-        // Va chercher la vue resources/views/admin/posts/create.blade.php
-        return view('admin.posts.create');
+        $categories = Category::all();
+
+         return view('admin.posts.create', [
+            'categories' => $categories
+        ]);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request)
+
+    public function store(PostRequest $request)
     {
+        $validated = $request->validated();
+        dump($validated);
+        die;
+
         $post = new Post; // Je crée un nouvel objet Post
         $post->title = $request->input('title'); // Je lui assigne un titre
         $post->content = $request->input('content'); // je lui assigne un contenu

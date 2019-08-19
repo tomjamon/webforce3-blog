@@ -8,6 +8,6 @@ class Post extends Model
 {
     public function category()
     {
-        return $this->hasOne('App\Category');
+        return $this->hasOne(Category::class, 'category_id');
     }
 }
