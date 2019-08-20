@@ -60,6 +60,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <!-- Lien vers la liste des articles pour la gestion des articles-->
+                                    <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                        Articles
+                                    </a>
+                                    <!-- Lien vers la liste des articles pour la gestion des articles-->
+                                    <a class="dropdown-item" href="{{ route('pages.index') }}">
+                                        Pages
+                                    </a>
+                                    <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

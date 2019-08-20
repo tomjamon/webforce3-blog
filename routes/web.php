@@ -10,6 +10,9 @@ Route::prefix('backoffice')->middleware('auth')->namespace('Admin')->group(funct
     Route::get('posts/{id}/edit', 'PostController@edit')->name('posts.edit'); // Edition d'un article
     Route::put('posts/{id}/update', 'PostController@update')->name('posts.update'); // Enregistrer la modification
     Route::get('posts/{id}/destroy', 'PostController@destroy')->name('posts.destroy'); // Supprime un article
+
+    Route::resource('pages', 'PageController');
+
 });
 
 // localhost/blog/public/a-propos va me renvoyer sur public function bonjour() dans le HomeController

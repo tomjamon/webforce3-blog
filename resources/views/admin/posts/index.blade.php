@@ -13,8 +13,6 @@
                 Créer un nouvel article
             </a>
             <hr>
-            {{ $posts->links() }}
-            <hr>
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -48,6 +46,8 @@
                     </tr>
                 @endforeach
             </table>
+            <hr>
+            {{ $posts->links() }}
         </div>
     </div>
 </div>
