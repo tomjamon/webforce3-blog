@@ -2,18 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    // Renvoie la liste des articles
+
+    public function category($title)
+    {
+        $category = Category::where([
+            ['title','=',$title]
+        ])->first();
+
+        $categories = Category::all();
+        $posts = Post::where([
+            ['active', '=', true],
+            ['draft', '=', false],
+            ['category_id', '=', $category->id]
+        ])
+            ->orderBy('created_at','DESC')
+            ->paginate(9);
+
+        return view('category', [
+            'posts' => $posts,
+            'title_category' => $category->title,
+            'categories' => $categories
+        ]);
+    }
+
     public function articles()
     {
-        $posts = Post::orderBy('created_at','DESC')->get(); // Récupère tous les articles
+        $categories =  Category::all();
+        $posts = Post::where([
+                ['active', '=', true],
+                ['draft', '=', false]
+            ])
+            ->orderBy('created_at','DESC')
+            ->paginate(9);
+        // Renvoie un objet "Pagination" pour pouvoir mettre un systeme de page
 
         return view('articles', [
             'posts' => $posts,
+            'categories' => $categories,
             // J'envoie la liste des article a ma vue
         ]);
     }

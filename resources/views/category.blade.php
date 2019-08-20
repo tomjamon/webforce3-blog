@@ -3,26 +3,9 @@
 @section('content')
 
     <main role="main">
-
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Bienvenue sur mon blog</h1>
-                <p class="lead text-muted">
-                    Ceci est mon blog personnel de développeur. J'écris des articles à propos de l'informatique qui me passionne !</p>
-                <p>
-                    <a href="{{ route('login') }}" class="btn btn-primary my-2">S'inscrire</a>
-                    <a href="{{ route('register') }}" class="btn btn-secondary my-2">Se connecter</a>
-                </p>
-                @foreach ($categories as $category)
-                    <a class="btn btn-info" href="{{ route('category', ['title' => $category->title]) }}">
-                        {{ $category->title }}
-                    </a>
-                @endforeach
-            </div>
-        </section>
-
         <div class="album py-5 bg-light">
             <div class="container">
+                <h1>Vous êtes sur la catégorie : {{ $title_category }}</h1>
                 {{ $posts->links() }}
                 <div class="row">
                     @foreach ($posts as $post)

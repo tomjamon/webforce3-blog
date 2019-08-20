@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Vue d'un article spécific
 Route::get('article/{id}', 'PostController@article')->name('article');
 
+Route::get('category/{title}', 'PostController@category')->name('category');
+
 // Liste des articles
 Route::get('articles', 'PostController@articles')->name('articles');
 
