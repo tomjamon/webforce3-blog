@@ -49,6 +49,7 @@ class PostController extends Controller
         }
         $post->save();
         Session::flash('status', 'Article bien ajouté');
+        Session::flash('type', 'alert-success');
 
         return redirect()->route('posts.index');
     }
@@ -89,6 +90,7 @@ class PostController extends Controller
         }
         $post->save();
         Session::flash('status', 'Article bien modifié');
+        Session::flash('type', 'alert-success');
 
         return redirect()->route('posts.index');
     }
@@ -98,6 +100,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
         Session::flash('status', 'Article bien supprimé');
+        Session::flash('type', 'alert-warning');
 
         return redirect()->route('posts.index');
     }

@@ -1,7 +1,7 @@
 <?php
 
 // Groupement de toutes les routes accessibles uniquement quand on est connecté
-Route::prefix('backoffice')->middleware('auth')->namespace('Admin')->group(function() {
+Route::prefix('backoffice')->middleware('auth','checkAdmin')->namespace('Admin')->group(function() {
     Route::resource('posts', 'PostController');
     Route::resource('pages', 'PageController');
 });

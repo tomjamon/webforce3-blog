@@ -45,11 +45,7 @@
             <div class="card">
                 <div class="card-header">Ajouter un commentaire</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+
                     @guest
                         Vous devez être connecté pour ajouter un commentaire à cet article
                     @else

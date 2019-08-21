@@ -43,6 +43,8 @@ class PageController extends Controller
         $page->save();
 
         Session::flash('status', 'Page bien ajoutée');
+        Session::flash('type', 'alert-success');
+
         return redirect()->route('pages.index');
     }
 
@@ -79,6 +81,7 @@ class PageController extends Controller
         }
         $page->save();
         Session::flash('status', 'Page bien modifié');
+        Session::flash('type', 'alert-success');
 
         return redirect()->route('pages.index');
     }
@@ -88,6 +91,7 @@ class PageController extends Controller
         $page = Page::find($id);
         $page->delete();
         Session::flash('status', 'Page bien supprimé');
+        Session::flash('type', 'alert-warning');
 
         return redirect()->route('pages.index');
     }
