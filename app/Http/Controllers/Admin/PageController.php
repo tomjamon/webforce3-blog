@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\PageRequest;
 use App\Models\Page;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {

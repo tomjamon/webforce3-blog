@@ -10,4 +10,12 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    // Un ARTICLE a plusieurs COMMENTAIRE
+    public function comments()
+    {
+        return $this
+            ->hasMany(Comment::class)
+            ->orderBy('created_at', 'DESC');
+    }
 }

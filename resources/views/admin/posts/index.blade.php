@@ -38,10 +38,11 @@
                                 href="{{ route('posts.edit', ['id'=>$post->id]) }}">
                                 Modifier
                             </a>
-                            <a class="btn btn-sm btn-danger"
-                               href="{{ route('posts.destroy', ['id'=>$post->id]) }}">
-                                Supprimer
-                            </a>
+                            <form class="d-inline-block" action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-sm btn-danger" type="submit">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
